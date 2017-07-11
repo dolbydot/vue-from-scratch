@@ -169,7 +169,6 @@ const renderApp = (title: string) =>
 export default renderApp
 ```
 在一个终端运行npm run dev:start，在另一个运行npm run dev:wds，打开浏览器输入:http://localhost:8000，即可查看页面
-
 - 接下来集成Vuejs，安装相关依赖
 ```
 npm i -S vue axios vuex vue-router
@@ -189,3 +188,9 @@ npm i -S vue axios vuex vue-router
  ```
  "parser": "babel-eslint"
  ```
+
+ Q:You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-included build.
+ A: 运行时的vue不包含模板编译器，不能在入口脚本中直接写template，可以通过render函数进行渲染或者使用带有编译器版本的Vue
+
+ Q:Cannot find module 'vue-template-compiler'
+ A:npm i -D vue-template-compiler

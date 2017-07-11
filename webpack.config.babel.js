@@ -14,6 +14,14 @@ export default {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.vue$/,
+        use: 'vue-loader'
+      },
+      {
+        test: /\.css$/,
+        use: 'style-loader!css-loader'
       }
     ]
   },
