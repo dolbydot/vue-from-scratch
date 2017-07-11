@@ -174,8 +174,35 @@ export default renderApp
 npm i -S vue axios vuex vue-router
 ```
 
+在客户端中新建组件App.vue，内容如下:
+```html
+<template>
+  <h2>
+    Hello dolblooks nicey</h2>
+</template>
+<script>
+export default {
+  created(){
+    console.log('instance created');
+  }
+}
+</script>
+<style>
+</style>
+```
+更新客户端的index.js文件，内容如下:
+```js
+import Vue from 'vue';
+import App from './App.vue';
+new Vue({
+  el:APP_CONTAINER_SELECTOR,
+  render:h=>h(App)
+});
+```
+
 ### TODO
 1. 添加Flow静态类型检查
+2. TypeScript的选用
 
 
 ### Error Logs
