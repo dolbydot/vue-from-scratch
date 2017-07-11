@@ -201,10 +201,10 @@ new Vue({
 ```
 
 ### TODO
-1. 添加Flow静态类型检查
-2. TypeScript的选用
-
-
+- [ ] 添加Flow静态类型检查
+- [ ] TypeScript的选用
+- [ ] 预编译器scss,stylus,less以及postcss的选用
+- [ ] circleci/appveyor/npm等
 ### Error Logs
  Q: Parsing error:the keyword export is reserved 
  
