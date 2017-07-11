@@ -10,10 +10,7 @@ node_modules/
 /*.log
 package-lock.json
 ```
-### 安装vue相关依赖
-```
-npm i -S vue axios vuex vue-router
-```
+
 ### 添加babel、eslint、EditorConfig等开发工具
 ```
 npm i -D babel-cli babel-preset-env eslint
@@ -91,12 +88,93 @@ export default renderApp;
 ```
 - 在package.json的scripts中添加:
 ```
-"dev:start": "nodemon --ignore lib --exec babel-node src/server"
+//忽略lib目录
+"dev:start": "nodemon --ignore lib --exec babel-node src/server",
 ```
 - 添加其他进程管理pm2，跨平台的文件删除应用rimraf，跨平台的环境变量程序cross-env，
 ```
 npm i -D pm2 rimraf cross-env
 ```
+
+### 添加webpack和HMR
+- 在src/shared/config.js中添加以下内容
+```
+export const WDS_PORT = 7000;
+export const APP_CONTAINER_CLASS = 'js-app';
+export const APP_CONTAINER_SELECTOR = `.${APP_CONTAINER_CLASS}`;
+```
+- 新建客户端渲染脚本src/client/index.js，内容如下:
+```
+import 'babel-polyfill';
+import { APP_CONTAINER_SELECTOR } from '../shared/config';
+document.querySelector(APP_CONTAINER_SELECTOR).innerHTML = '<h1>Hello Webpack!</h1>';
+```
+- 接下来需要将ES6的客户端代码打包为ES5,首先，安装相关依赖
+```
+npm i -D webpack webpack-dev-server babel-core babel-loader
+```
+然后在工程目录下新建文件webpack.config.babel.js，内容如下
+```
+import path from 'path';
+import { WDS_PORT } from './src/shared/config';
+import { isProd } from './src/shared/utils';
+export default {
+  entry: ['./src/client'],
+  output: {
+    filename: 'js/bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: isProd ? '/static/' : `http://localhost:${WDS_PORT}/dist/`,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      }
+    ]
+  },
+  devtool: isProd ? false : 'source-map',
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  devServer: {
+    port: WDS_PORT
+  }
+};
+```
+在scripts中添加命令:
+```
+"dev:wds":"webpack-dev-server --progress"
+```
+然后更新render-app.js的文件内容，使之可以通过客户端脚本渲染body内容。更新后的内容如下:
+```
+import { APP_CONTAINER_CLASS, STATIC_PATH, WDS_PORT } from '../shared/config'
+import { isProd } from '../shared/util'
+
+const renderApp = (title: string) =>
+`<!doctype html>
+<html>
+  <head>
+    <title>${title}</title>
+    <link rel="stylesheet" href="${STATIC_PATH}/css/style.css">
+  </head>
+  <body>
+    <div class="${APP_CONTAINER_CLASS}"></div>
+    <script src="${isProd ? STATIC_PATH : `http://localhost:${WDS_PORT}/dist`}/js/bundle.js"></script>
+  </body>
+</html>
+`
+
+export default renderApp
+```
+在一个终端运行npm run dev:start，在另一个运行npm run dev:wds，打开浏览器输入:http://localhost:8000，即可查看页面
+
+- 接下来集成Vuejs，安装相关依赖
+```
+npm i -S vue axios vuex vue-router
+```
+
 ### TODO
 1. 添加Flow静态类型检查
 
