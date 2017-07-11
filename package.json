@@ -4,15 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:start": "nodemon --ignore lib --exec babel-node src/server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.2",
+    "express": "^4.15.3",
     "vue": "^2.3.4",
     "vue-router": "^2.7.0",
     "vuex": "^2.3.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-env": "^1.6.0",
+    "compression": "^1.7.0",
+    "cross-env": "^5.0.1",
+    "eslint": "^4.2.0",
+    "nodemon": "^1.11.0",
+    "pm2": "^2.5.0",
+    "rimraf": "^2.6.1"
   }
 }
