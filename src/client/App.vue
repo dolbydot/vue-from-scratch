@@ -1,6 +1,8 @@
 <template>
-  <h2>
-    Hello dolblooks nicey</h2>
+<div>
+  <h3>hello world</h3>
+  <button class="btn btn-danger">hello dolby</button>
+  </div>
 </template>
 <script>
 export default {
@@ -10,5 +12,7 @@ export default {
 }
 </script>
 <style>
-
+  h2{
+    color:green;
+  }
 </style>

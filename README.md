@@ -205,6 +205,7 @@ new Vue({
 - [ ] TypeScript的选用
 - [ ] 预编译器scss,stylus,less以及postcss的选用
 - [ ] circleci/appveyor/npm等
+ -[ ] Something is wrong here，服务端如何动态插入webpack生成的脚本,Vue的SSR到底如何实现的
 ### Error Logs
  Q: Parsing error:the keyword export is reserved 
  
@@ -224,3 +225,6 @@ new Vue({
  Q:Cannot find module 'vue-template-compiler'  
  
  A:npm i -D vue-template-compiler
+
+ Q: Module not found: Error: Can't resolve '/src/libs/css/bootstrap.css' in 'E:\labs\vue\vue-from-scratch\src\libs\js'
+A: webpack添加--display-error-details选项，通常是路径问题

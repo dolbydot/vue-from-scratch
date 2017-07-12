@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import { APP_CONTAINER_SELECTOR } from '../shared/config';
 import Vue from 'vue';
 import App from './App.vue';

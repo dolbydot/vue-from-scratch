@@ -1,12 +1,13 @@
 {
-  "name": "vue-from-scratch",
+  "name": "js-from-scratch",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build:static":"webpack --display-error-details",
     "dev:start": "nodemon --ignore lib --exec babel-node src/server",
-    "dev:wds": "webpack-dev-server --progress"
+    "dev:wds": "webpack-dev-server  --progress"
   },
   "keywords": [],
   "author": "",
@@ -29,8 +30,11 @@
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "eslint": "^4.2.0",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.11.2",
     "nodemon": "^1.11.0",
     "pm2": "^2.5.0",
+    "raw-loader": "^0.5.1",
     "rimraf": "^2.6.1",
     "style-loader": "^0.18.2",
     "vue-loader": "^13.0.1",

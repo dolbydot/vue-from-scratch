@@ -15,5 +15,5 @@ app.get('/', (req, res) => {
 
 app.listen(WEB_PORT, () => {
   console.log(`Server running on port ${WEB_PORT} ${isProd ? '(production)' :
-  '(development).\nKeep "npm dev:wds" running in an other terminal'}.`)
+  '(development).\nKeep "npm dev:wds" running in an other terminal'}.`);
 });
